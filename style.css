@@ -1,0 +1,111 @@
+
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding: 0;
+}
+
+.video-cont{
+    height:100vh;
+    width: 100vw;
+    background-color: black;
+}
+video{
+    height:100%;
+    width:100%;
+}
+
+.action-cont{
+  height: 12rem;
+  width:5rem;
+  /* background-color: aquamarine; */
+  position: absolute;
+  top:calc((100vh - 12rem) / 2);
+  left:calc(100vw - 10rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 2;  
+}
+
+.record-btn{
+    height:3rem;
+    width:3rem;
+    background-color: red;
+    border-radius: 50%;
+
+}
+.capture-btn{
+    height:3rem;
+    width:3rem;
+    background-color:white;
+    border-radius: 50%;
+}
+.action-cont>*{
+    height: 5rem;
+    width:100%;
+    border:3px solid white;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.timer-cont{
+color:white;
+position:absolute;
+bottom:8rem;
+left:2rem;
+z-index: 2;  
+}
+
+.filter-cont{
+    background-color:gray;
+    height:16rem;
+    width:5rem;
+    position: absolute;
+    top:calc((100vh - 16rem) / 2);
+    left:2rem; 
+    z-index: 2;  
+}
+.filter{
+    height:4rem;
+    background-image: url("https://picsum.photos/seed/picsum/200/300");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: color-burn;
+}
+.orange{
+    background-color: #ffa50052;
+}
+.brown{
+    background-color:#a52a2a59;
+}
+.pink{
+    background-color:#ffc0cb57;
+}
+.transparent{
+    background-color: transparent;
+}
+.filter-layer{
+    height:100vh;
+    width:100vw;
+    z-index: 1;
+  
+    position: absolute;
+    top:0;
+    left:0;
+}
+.material-icons{
+    color:white;
+    font-size: 3rem;
+}
+.gallery{
+    position:absolute;
+    bottom: 5rem;
+    right:5rem;
+}
