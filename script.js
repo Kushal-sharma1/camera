@@ -1,3 +1,4 @@
+var uid =new ShortUniqueId();
 let video = document.querySelector("video");
 let captureBtnCont = document.querySelector(".capture-btn-cont");
 let captureBtn =document.querySelector(".capture-btn");
@@ -30,11 +31,27 @@ navigator.mediaDevices.getUserMedia(constraints).then(
       let blob =new Blob(chunks,{type:'video/mp4'});
 
       let videoUrl = URL.createObjectURL(blob);
-     // download a video
-      let a =document.createElement("a");
-      a.href =videoUrl;
-      a.download ="myVideo.mp4";
-      a.click();
+      if(db){
+        let videoId =uid();
+        let videoTransaction =db.transaction("video","readwrite");
+        let videoStore =videoTransaction.objectStore("video");
+        let videoEle={
+            id:videoId,
+            url:videoUrl,
+        }
+        let addRequest=videoStore.add(videoEle);
+        addRequest.onsuccess=()=>{
+            console.log("successfully video added in database")
+        }
+    }
+
+
+
+    //  // download a video
+    //   let a =document.createElement("a");
+    //   a.href =videoUrl;
+    //   a.download ="myVideo.mp4";
+    //   a.click();
 
       })
 
@@ -55,10 +72,24 @@ tool.fillStyle=transparentColor;
 tool.fillRect(0,0,canvas.width,canvas.height);
 
 let imageURL = canvas.toDataURL();
-//append in document
-let img =document.createElement("img");
-img.src =imageURL;
-document.body.append(img);
+
+if(db){
+    let imageId =uid();
+    let imageTransaction =db.transaction("image","readwrite");
+    let imageStore =imageTransaction.objectStore("image");
+    let imageEle={
+        id:imageId,
+        url:imageURL,
+    }
+    let addRequest=imageStore.add(imageEle);
+    addRequest.onsuccess=()=>{
+        console.log("successfully image added in database")
+    }
+}
+// //append in document
+// let img =document.createElement("img");
+// img.src =imageURL;
+// document.body.append(img);
 setTimeout(()=>{
     captureBtn.classList.remove("scale-capture");
 },510);
