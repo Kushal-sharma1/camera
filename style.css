@@ -143,4 +143,8 @@ z-index: 2;
     position:absolute;
     bottom: 5rem;
     right:5rem;
+    z-index: 2;
+}
+.gallery:hover{
+    cursor: pointer;
 }

@@ -6,12 +6,17 @@ let recordBtnCont =document.querySelector(".record-btn-cont");
 let recordBtn =document.querySelector(".record-btn");
 let transparentColor ="transparent";
 let timer = document.querySelector(".timer");
+let gallery = document.querySelector(".gallery");
 let recorder;
 let chunks=[];
 let constraints ={
     video:true,
     audio:true
 }
+
+gallery.addEventListener("click",()=>{
+    location.assign("./gallery.html");
+});
 navigator.mediaDevices.getUserMedia(constraints).then(
      (stream) => {
       video.srcObject=stream;
@@ -36,7 +41,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(
         let videoTransaction =db.transaction("video","readwrite");
         let videoStore =videoTransaction.objectStore("video");
         let videoEle={
-            id:videoId,
+            id:`vid-${videoId}`,
             url:videoUrl,
         }
         let addRequest=videoStore.add(videoEle);
@@ -78,7 +83,7 @@ if(db){
     let imageTransaction =db.transaction("image","readwrite");
     let imageStore =imageTransaction.objectStore("image");
     let imageEle={
-        id:imageId,
+        id:`img-${imageId}`,
         url:imageURL,
     }
     let addRequest=imageStore.add(imageEle);
