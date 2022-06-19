@@ -52,9 +52,10 @@ if(db){
      let videoDiv = document.createElement("div");
      videoDiv.setAttribute("class" ,"content");
      videoDiv.setAttribute("id",videoObj.id);
+     let url = URL.createObjectURL(videoObj.blobData);
      videoDiv.innerHTML=`
      <div class="show">
-     <video autoplay loop src="${videoObj.url}"></video>
+     <video autoplay loop src="${url}"></video>
      </div>
      <div class="delete">DELETE</div>
      <div class="download">DOWNLOAD</div>
